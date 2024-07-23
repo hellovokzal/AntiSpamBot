@@ -14,7 +14,7 @@ user_messages = {}
 check_interval = 1
 
 # Минимальное количество сообщений для мута
-mute_threshold = 2
+mute_threshold = 3
 
 # Время мута (в секундах)
 mute_duration = 600
@@ -40,6 +40,7 @@ def handle_message(message):
     if time.time() - last_message_time < check_interval:
       # Отправьте сообщение о муте
       bot.send_message(message.chat.id, f"Пользователь @{username} заблокирован за спам на 10 минут! ⛔📢")
+      user_messages = {}
 
       # Замутьте пользователя
       bot.restrict_chat_member(message.chat.id, user_id, until_date=int(time.time() + mute_duration), can_send_messages=False)
