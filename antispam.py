@@ -7,7 +7,7 @@ bot = telebot.TeleBot("7334734746:AAE_xWuTtPZOwt1VZCFUsH7L4FYu-zAc3BY")
 users = {}
 
 # Функция для обработки сообщений
-@bot.message_handler(content_types=["text"])
+@bot.message_handler(func=lambda message: True)
 def handle_message(message):
     # Получаем ID пользователя
     user_id = message.from_user.id
