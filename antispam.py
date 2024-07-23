@@ -43,4 +43,4 @@ def handle_message(message):
     users[user_id]["last_message_time"] = time.time()
 
 # Запускаем бота
-bot.polling()
+bot.polling(none_stop=True)
