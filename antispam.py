@@ -9,13 +9,12 @@ def g(usr, id, id_user):
     bot.send_message(id, f"@{usr}, следите за правилами чата и не нарушайте или могут в большой срок дать мут на 2 раза больше! 📢")
     permissions = telebot.types.ChatPermissions(can_send_messages=True,can_send_media_messages=True,can_send_other_messages=True,can_invite_to_chats=True,can_pin_messages=True,can_change_info=True)
 
-    bot.restrict_chat_member(message.chat.id, user_id, permissions=permissions)
+    bot.restrict_chat_member(id, id_user, permissions=permissions)
     
 def jk(usr, id, id_user):
     bot.send_message(id, f"@{usr}, следите за правилами чата и не нарушайте или могут в большой срок дать мут на 2 раза больше! 📢")
     permissions = telebot.types.ChatPermissions(can_send_messages=True,can_send_media_messages=True,can_send_other_messages=True,can_invite_to_chats=True,can_pin_messages=True,can_change_info=True)
-
-    bot.restrict_chat_member(message.chat.id, user_id, permissions=permissions)
+    bot.restrict_chat_member(id, id_user, permissions=permissions)
 
 @bot.message_handler(commands=['m'])
 def h(m):
