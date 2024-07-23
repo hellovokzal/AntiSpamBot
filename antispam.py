@@ -2,6 +2,8 @@ import telebot
 import time
 from threading import Thread
 
+num = 0
+
 bot = telebot.TeleBot("7334734746:AAE_xWuTtPZOwt1VZCFUsH7L4FYu-zAc3BY")
 
 def g(usr, id, id_user):
@@ -53,5 +55,12 @@ def ff(report):
 📢 Причина текста: {report.reply_to_message.text}!""")
     except:
         bot.send_message(report.chat.id, "Мы не смогли подать жалобу к модераторам, так как вы не репостнули пользователя в ответ, чтобы подать жалобу! ⛔📢")
+        
+@bot.message_handler(func=lambda message: True)
+
+def randmessage(message):
+    num = num + 1
+    if num == 10:
+        bot.send_message(message.chat.id, "Если пользователь нарушает прааила сообщества в группе, то репостни(в ответ) напиши /report и обязательно мы рассмотрим вашу поданую жалобу! ⛔📢")
 
 bot.polling(none_stop=True)
