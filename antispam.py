@@ -21,6 +21,7 @@ mute_duration = 600
 
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):
+  global user_messages
   # Получите имя пользователя и ID
   user_id = message.from_user.id
   username = message.from_user.username
