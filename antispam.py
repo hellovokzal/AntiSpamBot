@@ -37,6 +37,7 @@ def h(m):
 @bot.message_handler(commands=['u'])
 
 def j(g):
+bot.delete_message(g.chat.id, g.message_id)
     thr = Thread(target=jk, args=(g.reply_to_message.from_user.username, g.chat.id, g.reply_to_message.from_user.id))
     thr.start()
 
