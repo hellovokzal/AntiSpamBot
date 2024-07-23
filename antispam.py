@@ -24,7 +24,7 @@ def h(m):
     # Проверка, является ли пользователь администратором
     try:
         chat_member = bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
-        if chat_member.status != 'administrator':
+        if chat_member.status == 'administrator':
             bot.restrict_chat_member(m.chat.id, m.reply_to_message.from_user.id), permissions=telebot.types.ChatPermissions(can_send_messages=False)
             bot.send_message(m.chat.id, f"@{m.reply_to_message.from_user.username} заблокирован на 10 минут за нарушение правил. Будьте осторожны с правилами и следите за правилами! ⛔📢")
             thr = Thread(target=g, args=(m.reply_to_message.from_user.username, m.chat.id, m.reply_to_message.from_user.id))
