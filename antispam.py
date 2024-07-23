@@ -9,6 +9,9 @@ def g(usr, id, id_user):
     bot.send_message(id, f"@{usr}, следите за правилами чата и не нарушайте или могут в большой срок дать мут на 2 раза больше! 📢")
     bot.restrict_chat_member(id, id_user, permissions=telebot.types.ChatPermissions(can_send_messages=True))
     
+def jk(usr, id, id_user):
+    bot.send_message(id, f"@{usr}, следите за правилами чата и не нарушайте или могут в большой срок дать мут на 2 раза больше! 📢")
+    bot.restrict_chat_member(id, id_user, permissions=telebot.types.ChatPermissions(can_send_messages=True))
 
 @bot.message_handler(commands=['m'])
 def h(m):
@@ -31,7 +34,6 @@ def h(m):
 @bot.message_handler(commands=['u'])
 
 def j(g):
-    bot.send_message(id, f"@{g.reply_to_message.from_user.username}, следите за правилами чата и не нарушайте или могут в большой срок дать мут на 2 раза больше! 📢")
-    bot.restrict_chat_member(g.chat.id, g.reply_to_message.from_user.id, permissions=telebot.types.ChatPermissions(can_send_messages=True))
+    thr = Thread(target=g, args=(g.reply_to_message.from_user.username, g.chat.id, g.reply_to_message.from_user.id))
 
 bot.polling(none_stop=True)
