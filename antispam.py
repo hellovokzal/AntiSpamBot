@@ -16,13 +16,14 @@ def h(m):
     bot.delete_message(m.chat.id, m.message_id)
     
     # Проверка, является ли пользователь администратором
-    chat_member = bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
-    if chat_member.status != 'administrator':
-        bot.restrict_chat_member(m.chat.id, m.reply_to_message.from_user.id, until_date=int(time.time() + 10), permissions=telebot.types.ChatPermissions(can_send_messages=False))
-        bot.send_message(m.chat.id, f"@{m.reply_to_message.from_user.username} заблокирован на 10 минут за нарушение правил. Будьте осторожны с правилами и следите за правилами! ⛔📢")
-        thr = Thread(target=g, args=(m.reply_to_message.from_user.username, m.chat.id, m.reply_to_message.from_user.id))
-        thr.start()
-    else:
-        bot.send_message(m.chat.id, "Невозможно ограничить права администратора.")
+    try:
+        chat_member = bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+        if chat_member.status != 'administrator':
+            bot.restrict_chat_member(m.chat.id, m.reply_to_message.from_user.id, until_date=int(time.time() + 10), permissions=telebot.types.ChatPermissions(can_send_messages=False))
+            bot.send_message(m.chat.id, f"@{m.reply_to_message.from_user.username} заблокирован на 10 минут за нарушение правил. Будьте осторожны с правилами и следите за правилами! ⛔📢")
+            thr = Thread(target=g, args=(m.reply_to_message.from_user.username, m.chat.id, m.reply_to_message.from_user.id))
+            thr.start()
+        else:
+            bot.send_message(m.chat.id, "Невозможно ограничить права администратора.")
 
 bot.polling(none_stop=True)
