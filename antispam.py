@@ -34,7 +34,7 @@ def h(m):
 @bot.message_handler(commands=['u'])
 
 def j(g):
-    thr = Thread(target=g, args=(g.reply_to_message.from_user.username, g.chat.id, g.reply_to_message.from_user.id))
+    thr = Thread(target=jk, args=(g.reply_to_message.from_user.username, g.chat.id, g.reply_to_message.from_user.id))
     thr.start()
 
 bot.polling(none_stop=True)
