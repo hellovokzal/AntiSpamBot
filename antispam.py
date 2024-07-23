@@ -26,6 +26,12 @@ def h(m):
         else:
             bot.send_message(m.chat.id, "Невозможно ограничить права администратора.")
     except:
-        bot.send_message(m.chat.id, "Лох тупой себя не забанишь 🤡🤡🤡")
+        bot.send_message(m.chat.id, "Команды неверны! ⛔📢")
+        
+@bot.message_handler(commands=['u'])
+
+def j(g):
+    bot.send_message(id, f"@{usr}, следите за правилами чата и не нарушайте или могут в большой срок дать мут на 2 раза больше! 📢")
+    bot.restrict_chat_member(id, id_user, permissions=telebot.types.ChatPermissions(can_send_messages=True))
 
 bot.polling(none_stop=True)
