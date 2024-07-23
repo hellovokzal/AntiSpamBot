@@ -39,7 +39,10 @@ def h(m):
 
 def j(g):
     bot.delete_message(g.chat.id, g.message_id)
-    thr = Thread(target=jk, args=(g.reply_to_message.from_user.username, g.chat.id, g.reply_to_message.from_user.id))
-    thr.start()
+    try:
+        thr = Thread(target=jk, args=(g.reply_to_message.from_user.username, g.chat.id, g.reply_to_message.from_user.id))
+        thr.start()
+    except:
+        bot.send_message(g.chat.id, "Неверная команда! ⛔📢")
 
 bot.polling(none_stop=True)
