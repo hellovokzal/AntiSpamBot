@@ -25,5 +25,7 @@ def h(m):
             thr.start()
         else:
             bot.send_message(m.chat.id, "Невозможно ограничить права администратора.")
+    except:
+        bot.send_message(m.chat.id, "Лох тупой себя не забанишь 🤡🤡🤡")
 
 bot.polling(none_stop=True)
