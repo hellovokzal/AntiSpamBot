@@ -59,8 +59,10 @@ def ff(report):
 @bot.message_handler(func=lambda message: True)
 
 def randmessage(message):
+    global num
     num = num + 1
     if num == 10:
         bot.send_message(message.chat.id, "Если пользователь нарушает прааила сообщества в группе, то репостни(в ответ) напиши /report и обязательно мы рассмотрим вашу поданую жалобу! ⛔📢")
+        num = 0
 
 bot.polling(none_stop=True)
