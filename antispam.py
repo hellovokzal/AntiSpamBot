@@ -35,5 +35,6 @@ def h(m):
 
 def j(g):
     thr = Thread(target=g, args=(g.reply_to_message.from_user.username, g.chat.id, g.reply_to_message.from_user.id))
+    the.start()
 
 bot.polling(none_stop=True)
