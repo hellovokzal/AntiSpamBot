@@ -65,6 +65,4 @@ def randmessage(message):
         bot.send_message(message.chat.id, "Если пользователь нарушает правила сообщества в группе, то репостни(в ответ), напиши /report и обязательно мы рассмотрим вашу поданую жалобу! ⛔📢")
         num = 0
 
-while True:
-    bot.polling(none_stop=True)
-    time.sleep(60)
+bot.polling(timeout=None, none_stop=True)
