@@ -25,15 +25,18 @@ def h(m):
     
     # Проверка, является ли пользователь администратором
     try:
-        chat_member = bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
-        if chat_member.status != 'administrator':
-            permissions = telebot.types.ChatPermissions(can_send_messages=True,can_send_media_messages=True,can_send_other_messages=True,can_invite_to_chats=True,can_pin_messages=True,can_change_info=True)
-            bot.restrict_chat_member(m.chat.id, m.reply_to_message.from_user.id, until_date=int(time.time() + 10), permissions=telebot.types.ChatPermissions(can_send_messages=False))
-            bot.send_message(m.chat.id, f"@{m.reply_to_message.from_user.username} заблокирован на 10 минут за нарушение правил. Будьте осторожны с правилами и следите за правилами! ⛔📢")
-            thr = Thread(target=g, args=(m.reply_to_message.from_user.username, m.chat.id, m.reply_to_message.from_user.id))
-            thr.start()
+        if m.from_user.id == 1477069902:
+            chat_member = bot.get_chat_member(m.chat.id, m.reply_to_message.from_user.id)
+            if chat_member.status != 'administrator':
+                permissions = telebot.types.ChatPermissions(can_send_messages=True,can_send_media_messages=True,can_send_other_messages=True,can_invite_to_chats=True,can_pin_messages=True,can_change_info=True)
+                bot.restrict_chat_member(m.chat.id, m.reply_to_message.from_user.id, until_date=int(time.time() + 10), permissions=telebot.types.ChatPermissions(can_send_messages=False))
+                bot.send_message(m.chat.id, f"@{m.reply_to_message.from_user.username} заблокирован на 10 минут за нарушение правил. Будьте осторожны с правилами и следите за правилами! ⛔📢")
+                thr = Thread(target=g, args=(m.reply_to_message.from_user.username, m.chat.id, m.reply_to_message.from_user.id))
+                thr.start()
+            else:
+                bot.send_message(m.chat.id, "Невозможно ограничить права администратора.")
         else:
-            bot.send_message(m.chat.id, "Невозможно ограничить права администратора.")
+            bot.send_message(m.chat.id, "⛔")
     except:
         bot.send_message(m.chat.id, "Команды неверны! ⛔📢")
         
@@ -42,8 +45,11 @@ def h(m):
 def j(g):
     bot.delete_message(g.chat.id, g.message_id)
     try:
-        thr = Thread(target=jk, args=(g.reply_to_message.from_user.username, g.chat.id, g.reply_to_message.from_user.id))
-        thr.start()
+        if g.from_user.id == 1477069902:
+            thr = Thread(target=jk, args=(g.reply_to_message.from_user.username, g.chat.id, g.reply_to_message.from_user.id))
+            thr.start()
+        else:
+            bot.send_message(g.chat.id, "⛔")
     except:
         bot.send_message(g.chat.id, "Неверная команда! ⛔📢")
         
