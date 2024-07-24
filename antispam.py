@@ -65,4 +65,12 @@ def randmessage(message):
         bot.send_message(message.chat.id, "Если пользователь нарушает правила сообщества в группе, то репостни(в ответ), напиши /report и обязательно мы рассмотрим вашу поданую жалобу! ⛔📢")
         num = 0
 
-bot.polling(timeout=None, none_stop=True)
+def start_polling():
+    try:
+        bot.polling(timeout=120, none_stop=True) # Увеличиваем timeout для большей устойчивости
+    except Exception as e:
+        logging.error(f"Ошибка при работе бота: {e}")
+        start_polling() # Рекурсивный вызов start_polling() для перезапуска
+
+if __name__ == "__main__":
+    start_polling()
